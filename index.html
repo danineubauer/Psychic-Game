@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Psychic Game</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <h1>The Psychic Game</h1>
+    <h2>Guess what letter I'm thinking of</h2>
+    <p id="userGuess"></p>
+    <p id="computerGuess"></p>
+    <p id="wins"></p>
+    <p id="losses"></p>
+    <p id="guessesLeft"></p>
+    <p id="guessesSoFar"></p>
+
+    <script text="text/javascript">
+
+        //pseudo code: 
+
+        //Computer options: 
+
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+        //variables to hold counts: 
+
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 0;
+        var guessesSoFar = 0;
+
+        //variables to hold referances to places that hold text: 
+
+
+        var computerGuessText = document.getElementById("#computerGuess");
+        var winsText = document.getElementById("#wins");
+        var lossesText = document.getElementById("#losses");
+        var guessesLeftText = document.getElementById("#guessesLeft");
+        var guessesSoFarText = document.getElementById("#guessesSoFar");
+
+        //function that is run when a user presses a key: 
+
+        function myfunction(event) {
+            var typedletter = event.key;
+            document.getElementById("userGuess").innerHTML = "You chose the letter: " + typedletter;
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
