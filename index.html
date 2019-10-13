@@ -11,8 +11,9 @@
 <body>
 
     <h1>The Psychic Game</h1>
-    <h2>Guess what letter I'm thinking of</h2>
-    <p id="userGuess"></p>
+    <h2 id="directions-text">Guess what letter I'm thinking of</h2>
+
+    <p id="userGuessed"></p>
     <p id="computerGuess"></p>
     <p id="wins"></p>
     <p id="losses"></p>
@@ -25,34 +26,54 @@
 
         //Computer options: 
 
-        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
         //variables to hold counts: 
 
         var wins = 0;
         var losses = 0;
-        var guessesLeft = 0;
+        var guessesLeft = 9;
         var guessesSoFar = 0;
 
         //variables to hold referances to places that hold text: 
 
-
-        var computerGuessText = document.getElementById("#computerGuess");
-        var winsText = document.getElementById("#wins");
-        var lossesText = document.getElementById("#losses");
-        var guessesLeftText = document.getElementById("#guessesLeft");
-        var guessesSoFarText = document.getElementById("#guessesSoFar");
+        var directionsText = document.getElementById("directions-text");
+        var userGuessText = document.getElementById("userGuessed");
+        var computerGuessText = document.getElementById("computerGuess");
+        var winsText = document.getElementById("wins");
+        var lossesText = document.getElementById("losses");
+        var guessesLeftText = document.getElementById("guessesLeft");
+        var guessesSoFarText = document.getElementById("guessesSoFar");
 
         //function that is run when a user presses a key: 
 
-        function myfunction(event) {
-            var typedletter = event.key;
-            document.getElementById("userGuess").innerHTML = "You chose the letter: " + typedletter;
-        }
+        document.onkeyup = function(event) {
+            
+            var userGuess = event.key;
+            
+            var computerGuess = letters[Math.floor(Math.random() * letters.length)];
 
 
+                if (userGuess === computerGuess) {
+                    wins++;
+                    guessesSoFar++;
+                    guessesLeft--;
+                } else {
+                    losses++;
+                    guessesSoFar++; 
+                    guessesLeft--;
+                }
+            
 
+            directionsText.textContent = ""; 
 
+            userGuessText.textContent = "You chose: " + userGuess;
+            computerGuessText.textContent = "I chose: " + computerGuess;
+            winsText.textContent = "wins: " + wins;
+            lossesText.textContent = "losses: " + losses;
+            guessesSoFarText.textContent = "You guessed " + guessesSoFar + " times";
+            guessesLeftText.textContent = "You have " + guessesLeft + " guesses left" ;
+        };
 
 
     </script>
