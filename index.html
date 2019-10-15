@@ -20,16 +20,8 @@
 
 </head>
 
-<body>
-
-    <p id="userGuessed"></p>
-    <p id="computerGuess"></p>
-    <p id="wins"></p>
-    <p id="losses"></p>
-    <p id="guessesLeft"></p>
-    <p id="guessesSoFar"></p>
-
-
+<body>  
+    <br><br><br><br>
     <div class="container">
         <div class="card text-center">
             <h1 class="card-header">
@@ -40,14 +32,48 @@
                 <p class="card-text"></p>
                 <a href="#" class="btn btn-primary" id="clickToGuess">Click to guess</a>
             </div>
-            <div class="card-footer text-muted">
-                <br>
+            <div id="choices" style="visibility: hidden;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">You chose:</th>
+                            <th scope="col">Computer chose:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="userGuessed"></td>
+                            <td id="computerGuess"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Your wins:</th>
+                            <th scope="col">Your loses</th>
+                            <th scope="col">Guesses left:</th>
+                            <th scope="col">Number of guesses:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="wins"></td>
+                            <td id="losses"></td>
+                            <td id="guessesLeft"></td>
+                            <td id="guessesSoFar"></td>
+                        </tr>
+                    </tbody>
+                </table>
+        
             </div>
+        </div>    
+        <div class="card-footer text-muted">
+            <br>
         </div>
-
     </div>
 
-
+    </div>
 
     <script text="text/javascript">
 
@@ -67,11 +93,8 @@
         //variables to hold referances to places that hold text: 
 
         var directionsText = document.getElementById("directions-text");
-
         var chooseWiselyText = document.getElementById("chooseWisely");
-
         var clickToGuessBtn = document.getElementById("clickToGuess");
-
         var userGuessText = document.getElementById("userGuessed");
         var computerGuessText = document.getElementById("computerGuess");
         var winsText = document.getElementById("wins");
@@ -86,30 +109,34 @@
             directionsText.textContent = "Choose a letter...";
             document.getElementById("clickToGuess").style.visibility = "hide";
             this.style.display = "none";
+
         });
 
 
-            document.onkeyup = function (event) {
-                var userGuess = event.key;
-                var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+        document.onkeyup = function (event) {
+            var userGuess = event.key;
+            var computerGuess = letters[Math.floor(Math.random() * letters.length)];
 
 
-                if (userGuess === computerGuess) {
-                    win++;
-                } else {
-                    losses++;
-                    guessesSoFar++;
-                    guessesLeft--;
-                }
+            if (userGuess === computerGuess) {
+                wins++;
+            } else {
+                losses++;
+                guessesSoFar++;
+                guessesLeft--;
+            }
 
-                userGuessText.textContent = "You chose: " + userGuess;
-                computerGuessText.textContent = "I chose: " + computerGuess;
-                winsText.textContent = "wins: " + wins;
-                lossesText.textContent = "losses: " + losses;
-                guessesSoFarText.textContent = "You guessed " + guessesSoFar + " times";
-                guessesLeftText.textContent = "You have " + guessesLeft + " guesses left";
+            userGuessText.textContent = userGuess;
+            computerGuessText.textContent = computerGuess;
 
-            };
+            document.getElementById("choices").style.visibility = "visible";
+
+            winsText.textContent = wins;
+            lossesText.textContent = losses;
+            guessesSoFarText.textContent = guessesSoFar;
+            guessesLeftText.textContent = guessesLeft;
+
+        };
 
     </script>
 </body>
