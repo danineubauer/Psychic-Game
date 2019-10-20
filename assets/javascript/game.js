@@ -18,6 +18,7 @@
         var directionsText = document.getElementById("directions-text");
         var chooseWiselyText = document.getElementById("chooseWisely");
         var clickToGuessBtn = document.getElementById("clickToGuess");
+        var playAgainBtn = document.getElementById("playAgain");
         var userGuessText = document.getElementById("userGuessed");
         var computerGuessText = document.getElementById("computerGuess");
         var winsText = document.getElementById("wins");
@@ -35,6 +36,10 @@
             this.style.display = "none";
         });
 
+        playAgainBtn.addEventListener("click", function (event) {
+            document.getElementById("playAgain").style.visibility = "visible";
+            this.style.display = "visible";
+        });
  
 
         document.onkeyup = function (event) {
@@ -51,14 +56,15 @@
                     yourGuesses--;
                 };
             } else { 
-                document.getElementById("choices").style.visibility = "hide";
+
             };
 
+            document.getElementById("choices").style.visibility = "visible";
+            
             directionsText.textContent = "Choose a letter! You have " + yourGuesses + " guesses...";
             userGuessText.textContent = userGuess;
             computerGuessText.textContent = computerGuess;
 
-            document.getElementById("choices").style.visibility = "visible";
 
             winsText.textContent = wins;
             lossesText.textContent = losses;

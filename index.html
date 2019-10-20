@@ -32,11 +32,19 @@
             <h1 class="card-header">
                 The Psychic Game
             </h1>
+            <!--start playing button-->
             <div class="card-body">
                 <h2 class="card-title" id="directions-text">Click to guess which letter I'm thinking of</h2>
                 <p class="card-text"></p>
                 <a href="#" class="btn btn-primary" id="clickToGuess">Click to guess</a>
             </div>
+            <!--play again button-->
+            <div class="card-body" id="playAgain" style="visibility: hidden;">
+                <h2 class="card-title" id="directions-text">You lost! Click below to play again</h2>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary" id="clickToGuess">Click to play</a>
+            </div>
+            <!--display all info-->
             <div id="choices" style="visibility: hidden;">
                 <table class="table table-striped">
                     <thead>
