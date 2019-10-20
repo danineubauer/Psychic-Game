@@ -9,8 +9,9 @@
 
         var wins = 0;
         var losses = 0;
-        var guessesLeft = 9;
+        var guessesLeft = 10;
         var guessesSoFar = 0;
+        var yourGuesses = 10;
 
         //variables to hold referances to places that hold text: 
 
@@ -23,31 +24,37 @@
         var lossesText = document.getElementById("losses");
         var guessesLeftText = document.getElementById("guessesLeft");
         var guessesSoFarText = document.getElementById("guessesSoFar");
+        
 
-        //function that is run when a user presses a key: 
 
+        //function that is run when a user presses button: 
 
         clickToGuessBtn.addEventListener("click", function (event) {
-            directionsText.textContent = "Choose a letter! You have 10 guesses...";
+            directionsText.textContent = "Choose a letter! You have " + yourGuesses + " guesses...";
             document.getElementById("clickToGuess").style.visibility = "hide";
             this.style.display = "none";
-
         });
 
+ 
 
         document.onkeyup = function (event) {
             var userGuess = event.key;
             var computerGuess = letters[Math.floor(Math.random() * letters.length)];
 
+            if (yourGuesses > 0) { 
+                if (userGuess === computerGuess) {
+                    wins++;
+                } else {
+                    losses++;
+                    guessesSoFar++;
+                    guessesLeft--;
+                    yourGuesses--;
+                };
+            } else { 
+                document.getElementById("choices").style.visibility = "hide";
+            };
 
-            if (userGuess === computerGuess) {
-                wins++;
-            } else {
-                losses++;
-                guessesSoFar++;
-                guessesLeft--;
-            }
-
+            directionsText.textContent = "Choose a letter! You have " + yourGuesses + " guesses...";
             userGuessText.textContent = userGuess;
             computerGuessText.textContent = computerGuess;
 
